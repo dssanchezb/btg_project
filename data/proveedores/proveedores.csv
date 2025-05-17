@@ -1,0 +1,6 @@
+proveedor_id,nombre_proveedor,tipo_energia
+P001,EnerCol,Eólica
+P002,HidroPlus,Hidroeléctrica
+P003,NucleoPower,Nuclear
+P004,EcoEnergia,Eólica
+P005,AguaViva,Hidroeléctrica
