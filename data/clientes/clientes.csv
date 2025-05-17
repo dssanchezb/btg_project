@@ -1,0 +1,11 @@
+cliente_id,tipo_identificacion,nombre,ciudad
+C001,CC,Carlos Gómez,Bogotá
+C002,NIT,Sofía Martínez,Medellín
+C003,CC,Andrés Pérez,Cali
+C004,TI,Lucía Rodríguez,Barranquilla
+C005,CC,Juan Torres,Bucaramanga
+C006,NIT,Mariana Ríos,Cartagena
+C007,CC,Felipe Mendoza,Manizales
+C008,TI,Ana Ramírez,Pereira
+C009,CC,Laura Herrera,Armenia
+C010,NIT,Diego Salazar,Neiva
