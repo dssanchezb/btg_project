@@ -205,3 +205,32 @@ resource "aws_glue_crawler" "transacciones_crawler" {
   })
 }
 
+resource "aws_s3_object" "glue_script" {
+  bucket = aws_s3_bucket.bucket_btg_analytics.bucket
+  key    = "scripts/btg_transformation.py"
+  source = "${path.module}/../glue/btg_transformation.py"
+  etag   = filemd5("${path.module}/../glue/btg_transformation.py")
+  content_type = "text/x-python"
+}
+
+resource "aws_glue_job" "btg_transformation_job" {
+  name     = "btg-transformation-job"
+  role_arn = aws_iam_role.glue_role.arn
+
+  command {
+    name            = "glueetl"
+    script_location = "s3://${aws_s3_bucket.bucket_btg_analytics.bucket}/scripts/btg_transformation.py"
+    python_version  = "3"
+  }
+
+  glue_version = "4.0"
+  number_of_workers = 2
+  worker_type       = "G.1X"
+
+  default_arguments = {
+    "--TempDir" = "s3://${aws_s3_bucket.bucket_btg_analytics.bucket}/temp/"
+    "--job-language" = "python"
+  }
+
+  depends_on = [aws_s3_object.glue_script]
+}
