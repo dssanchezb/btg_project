@@ -103,12 +103,21 @@ También puedes ejecutar consultas desde Athena o desde Python con `boto3` o `Py
 
 ## 🧠 Consultas Athena desde Python
 
-Se pueden realizar consultas básicas como:
+Se pueden realizar consultas básicas como: detalle de transacciones realizadas por cliente.
 
 ```sql
-SELECT tipo_cliente, COUNT(*) 
-FROM transformed_clientes 
-GROUP BY tipo_cliente;
+select 
+    c.*,
+    t.transaccion_id,
+    tipo_transaccion,
+    cantidad_comprada,
+    t.precio,
+    t.tipo_energia,
+    t.year,
+    t.month 
+from transacciones_transacciones t
+join clientes_clientes c on t.id_cliente_proveedor = c.cliente_id
+;
 ```
 
 ---
